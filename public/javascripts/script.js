@@ -1,3 +1,13 @@
+(function ($) {
+  $.fn.cond = function () {
+      var e, a = arguments, b = 0, f, d, c;
+      while (!f && b < a.length) {
+          f = a[b++]; d = a[b++]; f = $.isFunction(f) ? f.call(this) : f;
+          c = !d ? f : f ? d.call(this, f) : e
+      } return c !== e ? c : this
+  }
+})(jQuery);
+
 $(function () {
     
   "use strict";
@@ -67,3 +77,19 @@ for (var i = 0; i < btns.length; i++) {
     this.className += " active";
   });
 }
+
+function openPage(pageName,elmnt,color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+  elmnt.style.backgroundColor = color;
+}
+
+document.getElementById("defaultOpen").click();
